@@ -1,0 +1,21 @@
+#include <stdio.h>
+int main()
+{
+    char st[200], *p;
+    int i;
+    p = st;
+    printf("Enter string:\n");
+    scanf("%s", p);
+    printf("The string entered is:\n");
+    printf("%s\n", p);
+    for (i = 0; *(p + i) != '\0'; i++)
+    {
+        if (*(p + i) >= 'a' && *(p + i) <= 'z')
+        {
+            *(p + i) = *(p + i) - 32;   
+        }
+    }
+    printf("String after converting to uppercase:\n");
+    printf("%s\n", p);
+    return 0;
+}
