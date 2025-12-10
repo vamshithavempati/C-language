@@ -1,0 +1,15 @@
+#include <stdio.h>
+int main()
+{
+    int num, i, fact = 1;
+    int *p;
+    printf("Enter a number: ");
+    scanf("%d", &num);
+    p = &num;
+    for(i = 1; i <= *p; i++)
+    {
+        fact = fact * i;
+    }
+    printf("Factorial of %d = %d", *p, fact);
+    return 0;
+}
