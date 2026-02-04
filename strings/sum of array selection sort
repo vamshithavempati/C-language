@@ -1,0 +1,34 @@
+#include <iostream>
+using namespace std;
+void selectionSort(int a[], int n) {
+    for (int i = 0; i < n - 1; i++) {
+        int min = i;
+        for (int j = i + 1; j < n; j++) {
+            if (a[j] < a[min])
+                min = j;
+        }
+        swap(a[i], a[min]);
+    }
+}
+
+int sumArray(int a[], int n) {
+    int sum = 0;
+    for (int i = 0; i < n; i++)
+        sum += a[i];
+    return sum;
+}
+
+int main() {
+    int a[50], n;
+    cout << "Enter number of elements: ";
+    cin >> n;
+    cout << "Enter elements:\n";
+    for (int i = 0; i < n; i++)
+        cin >> a[i];
+    selectionSort(a, n);
+    cout << "Sorted array:\n";
+    for (int i = 0; i < n; i++)
+        cout << a[i] << " ";
+    cout << "\nSum of array = " << sumArray(a, n);
+    return 0;
+}
