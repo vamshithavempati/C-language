@@ -1,0 +1,82 @@
+#include <iostream>
+using namespace std;
+
+#define MAX 5
+
+int queue[MAX];
+int rear = -1;
+
+// Check empty
+bool isEmpty() {
+    return rear == -1;
+}
+
+// Check full
+bool isFull() {
+    return ((rear + 1) % MAX == 0);
+}
+
+// Enqueue
+void enqueue(int value) {
+    if (isFull()) {
+        cout << "Queue Overflow\n";
+    } else {
+        rear = (rear + 1) % MAX;
+        queue[rear] = value;
+    }
+}
+
+// Dequeue
+void dequeue() {
+    if (isEmpty()) {
+        cout << "Queue Underflow\n";
+    } else {
+        int front = (rear + 1) % MAX;
+        cout << "Deleted element: " << queue[front] << endl;
+
+        if (front == rear) {
+            rear = -1;
+        } else {
+            // Shift elements
+            for (int i = front; i != rear; i = (i + 1) % MAX) {
+                queue[i] = queue[(i + 1) % MAX];
+            }
+            rear = (rear - 1 + MAX) % MAX;
+        }
+    }
+}
+
+// Display
+void display() {
+    if (isEmpty()) {
+        cout << "Queue is empty\n";
+    } else {
+        int front = (rear + 1) % MAX;
+        int i = front;
+
+        cout << "Queue elements: ";
+        while (true) {
+            cout << queue[i] << " ";
+            if (i == rear) break;
+            i = (i + 1) % MAX;
+        }
+        cout << endl;
+    }
+}
+
+// Main
+int main() {
+    enqueue(10);
+    enqueue(20);
+    enqueue(30);
+    display();
+
+    dequeue();
+    display();
+
+    enqueue(40);
+    enqueue(50);
+    display();
+
+    return 0;
+}
